@@ -10,67 +10,63 @@ module.exports = class extends Generator {
   }
 
   async prompting() {
-    this.answers = await this.prompt([
-      {
+    this.answers = await this.prompt([{
         type: "input",
         name: "basePackage",
-        message: "ベースパッケージを入力してください。 (例 jp.co.api)",
+        message: "Tell me base package (e.g. example.api)",
         validate(input) {
           if (input.length > 0) {
             return true;
           } else {
-            return "文字が入力されていません。";
+            return "not allowed empty";
           }
         }
       },
       {
         type: "input",
         name: "resourceName",
-        message:
-          "リソース名(物理名)をパスカルケースで入力してください。(例:JobSchedule)",
+        message: "Tell me physical resource name in pascal case. (e.g JobSchedule)",
         validate(input) {
           if (input.length > 0) {
             return true;
           } else {
-            return "文字が入力されていません。";
+            return "not allowed empty";
           }
         }
       },
       {
         type: "input",
         name: "resourceNameKana",
-        message: "リソース名(論理名)を入力してください。(例:作業予定)",
+        message: "Tell me logical resource name. this is used for comments (e.g 作業予定 sorry for Japansese)",
         validate(input) {
           if (input.length > 0) {
             return true;
           } else {
-            return "文字が入力されていません。";
+            return "not allowed empty";
           }
         }
       },
       {
         type: "input",
         name: "primaryKey",
-        message:
-          "対応するテーブルの主キーをスネークケースで入力してください。(例:job_schedule_id)",
+        message: "Tell me primary key that supporting table in snake case (e.g. job_schedule_id)",
         validate(input) {
           if (input.length > 0) {
             return true;
           } else {
-            return "文字が入力されていません。";
+            return "not allowed empty";
           }
         }
       },
       {
         type: "input",
         name: "endPoint",
-        message:
-          "APIのエンドポイント(URI)を入力してください。(例:job-schedules)",
+        message: "Tell me API end point (e.g. job-schedules)",
         validate(input) {
           if (input.length > 0) {
             return true;
           } else {
-            return "文字が入力されていません。";
+            return "not allowed empty";
           }
         }
       }
@@ -101,8 +97,7 @@ module.exports = class extends Generator {
     //Dao
     this.fs.copyTpl(
       this.templatePath("Dao.java"),
-      this.destinationPath(`dest/${resourceName}/dao/${resourceName}Dao.java`),
-      {
+      this.destinationPath(`dest/${resourceName}/dao/${resourceName}Dao.java`), {
         ...params
       }
     );
@@ -112,8 +107,7 @@ module.exports = class extends Generator {
       this.templatePath("select.sql"),
       this.destinationPath(
         `dest/${resourceName}/sql/${resourceName}Dao/select${resourceName}s.sql`
-      ),
-      {
+      ), {
         ...params
       }
     );
@@ -121,8 +115,7 @@ module.exports = class extends Generator {
       this.templatePath("selectByPk.sql"),
       this.destinationPath(
         `dest/${resourceName}/sql/${resourceName}Dao/selectByPk.sql`
-      ),
-      {
+      ), {
         ...params
       }
     );
@@ -130,8 +123,7 @@ module.exports = class extends Generator {
       this.templatePath("insert.sql"),
       this.destinationPath(
         `dest/${resourceName}/sql/${resourceName}Dao/insert.sql`
-      ),
-      {
+      ), {
         ...params
       }
     );
@@ -139,8 +131,7 @@ module.exports = class extends Generator {
       this.templatePath("update.sql"),
       this.destinationPath(
         `dest/${resourceName}/sql/${resourceName}Dao/update.sql`
-      ),
-      {
+      ), {
         ...params
       }
     );
@@ -148,8 +139,7 @@ module.exports = class extends Generator {
       this.templatePath("delete.sql"),
       this.destinationPath(
         `dest/${resourceName}/sql/${resourceName}Dao/delete.sql`
-      ),
-      {
+      ), {
         ...params
       }
     );
@@ -159,8 +149,7 @@ module.exports = class extends Generator {
       this.templatePath("Resource.java"),
       this.destinationPath(
         `dest/${resourceName}/resource/${resourceName}Resource.java`
-      ),
-      {
+      ), {
         ...params
       }
     );
@@ -170,8 +159,7 @@ module.exports = class extends Generator {
       this.templatePath("Service.java"),
       this.destinationPath(
         `dest/${resourceName}/service/${resourceName}Service.java`
-      ),
-      {
+      ), {
         ...params
       }
     );
@@ -181,8 +169,7 @@ module.exports = class extends Generator {
       this.templatePath("Entity.java"),
       this.destinationPath(
         `dest/${resourceName}/model/entity/${resourceName}.java`
-      ),
-      {
+      ), {
         ...params
       }
     );
@@ -192,8 +179,7 @@ module.exports = class extends Generator {
       this.templatePath("PostPutForm.java"),
       this.destinationPath(
         `dest/${resourceName}/model/form/PostPut${resourceName}Form.java`
-      ),
-      {
+      ), {
         ...params
       }
     );
@@ -203,8 +189,7 @@ module.exports = class extends Generator {
       this.templatePath("SearchForm.java"),
       this.destinationPath(
         `dest/${resourceName}/model/form/${resourceName}SearchForm.java`
-      ),
-      {
+      ), {
         ...params
       }
     );
@@ -214,8 +199,7 @@ module.exports = class extends Generator {
       this.templatePath("SearchResponse.java"),
       this.destinationPath(
         `dest/${resourceName}/model/dto/${snakeResourceName}/${resourceName}SearchResponse.java`
-      ),
-      {
+      ), {
         ...params
       }
     );
@@ -225,8 +209,7 @@ module.exports = class extends Generator {
       this.templatePath("package-info.java"),
       this.destinationPath(
         `dest/${resourceName}/model/dto/${snakeResourceName}/package-info.java`
-      ),
-      {
+      ), {
         ...params
       }
     );
@@ -236,8 +219,7 @@ module.exports = class extends Generator {
       this.templatePath("AbstractSearchForm.java"),
       this.destinationPath(
         `dest/${resourceName}/model/form/AbstractSearchForm.java`
-      ),
-      {
+      ), {
         ...params
       }
     );
@@ -245,8 +227,7 @@ module.exports = class extends Generator {
     //PagerUtil
     this.fs.copyTpl(
       this.templatePath("PagerUtil.java"),
-      this.destinationPath(`dest/${resourceName}/util/PagerUtil.java`),
-      {
+      this.destinationPath(`dest/${resourceName}/util/PagerUtil.java`), {
         ...params
       }
     );
@@ -254,15 +235,15 @@ module.exports = class extends Generator {
 
   install() {
     //後書き
-    this.log(yosay("使用するにあたり\n以下の説明を\n読んでください。"));
+    this.log(yosay("Please read\nfollowing\ncomments."));
 
-    this.log("↓成果物を以下に生成しました。↓\n");
+    this.log("↓created successfully↓\n");
     const filePath = __dirname + "/dest/" + this.answers.resourceName;
     this.log(filePath + "\n");
 
     const caution = [
       "************************************************************************************\n",
-      "コード中のTODOの箇所は適宜置き換えてください\n",
+      "Please replace the code on TODO comments appropriately.\n",
       "************************************************************************************\n"
     ];
     this.log(chalk.bold(caution.join("")));
@@ -270,25 +251,25 @@ module.exports = class extends Generator {
 };
 
 /**
- * キャメルケースへ変換
+ * convert camel case
  * @param string
  * @return string
  */
 function camelCase(str) {
   str = str.charAt(0).toLowerCase() + str.slice(1);
-  return str.replace(/[-_](.)/g, function(match, group1) {
+  return str.replace(/[-_](.)/g, function (match, group1) {
     return group1.toUpperCase();
   });
 }
 
 /**
- * スネークケースへ変換
+ * convert snake case
  * @param string
  * @return string
  */
 function snakeCase(str) {
   var camel = camelCase(str);
-  return camel.replace(/[A-Z]/g, function(s) {
+  return camel.replace(/[A-Z]/g, function (s) {
     return "_" + s.charAt(0).toLowerCase();
   });
 }
