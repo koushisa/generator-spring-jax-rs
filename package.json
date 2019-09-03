@@ -1,0 +1,34 @@
+{
+  "name": "generator-spring-jax-rs",
+  "version": "1.0.1",
+  "description": "Generator to easily generate the Spring Boot And JAX-RS Web Applications",
+  "homepage": "",
+  "author": {
+    "name": "koushisa",
+    "email": "sk15fame@gmail.com",
+    "url": "https://github.com/koushisa"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Java",
+    "Spring",
+    "Spring Boot",
+    "Doma",
+    "yeoman-generator"
+  ],
+  "repository": "koushisa/generator-spring-jax-rs",
+  "license": "MIT",
+  "dependencies": {
+    "babel-eslint": "^10.0.2",
+    "chalk": "^2.4.2",
+    "eslint": "^6.0.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "prettier": "^1.18.2",
+    "yeoman-generator": "^4.0.1",
+    "yosay": "^2.0.2"
+  }
+}
