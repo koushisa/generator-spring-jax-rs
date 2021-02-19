@@ -8,7 +8,7 @@ inspired by Artisan from Laravel.
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-vuex using [npm](https://www.npmjs.com/) (i assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) and generator-spring-jax-rs using [npm](https://www.npmjs.com/) (i assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
 npm install -g yo
